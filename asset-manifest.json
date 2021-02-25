@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/simple-flight-check/static/css/main.216c5040.chunk.css",
+    "main.js": "/simple-flight-check/static/js/main.42bc6b55.chunk.js",
+    "main.js.map": "/simple-flight-check/static/js/main.42bc6b55.chunk.js.map",
+    "runtime-main.js": "/simple-flight-check/static/js/runtime-main.41c4013d.js",
+    "runtime-main.js.map": "/simple-flight-check/static/js/runtime-main.41c4013d.js.map",
+    "static/css/2.927993ae.chunk.css": "/simple-flight-check/static/css/2.927993ae.chunk.css",
+    "static/js/2.c327af55.chunk.js": "/simple-flight-check/static/js/2.c327af55.chunk.js",
+    "static/js/2.c327af55.chunk.js.map": "/simple-flight-check/static/js/2.c327af55.chunk.js.map",
+    "static/js/3.57504fc4.chunk.js": "/simple-flight-check/static/js/3.57504fc4.chunk.js",
+    "static/js/3.57504fc4.chunk.js.map": "/simple-flight-check/static/js/3.57504fc4.chunk.js.map",
+    "index.html": "/simple-flight-check/index.html",
+    "static/css/2.927993ae.chunk.css.map": "/simple-flight-check/static/css/2.927993ae.chunk.css.map",
+    "static/css/main.216c5040.chunk.css.map": "/simple-flight-check/static/css/main.216c5040.chunk.css.map",
+    "static/js/2.c327af55.chunk.js.LICENSE.txt": "/simple-flight-check/static/js/2.c327af55.chunk.js.LICENSE.txt",
+    "static/media/1.2650d6bf.jpg": "/simple-flight-check/static/media/1.2650d6bf.jpg",
+    "static/media/2.96a52f63.jpg": "/simple-flight-check/static/media/2.96a52f63.jpg",
+    "static/media/3.d78945b6.jpg": "/simple-flight-check/static/media/3.d78945b6.jpg",
+    "static/media/4.1d2ae518.jpg": "/simple-flight-check/static/media/4.1d2ae518.jpg",
+    "static/media/5.f0c84dfe.jpg": "/simple-flight-check/static/media/5.f0c84dfe.jpg",
+    "static/media/6.1bb38aa4.jpg": "/simple-flight-check/static/media/6.1bb38aa4.jpg",
+    "static/media/Vector.27d71800.svg": "/simple-flight-check/static/media/Vector.27d71800.svg",
+    "static/media/Login.module.css": "/simple-flight-check/static/media/back.371721e2.png",
+    "static/media/slick-theme.css": "/simple-flight-check/static/media/slick.c94f7671.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.41c4013d.js",
+    "static/css/2.927993ae.chunk.css",
+    "static/js/2.c327af55.chunk.js",
+    "static/css/main.216c5040.chunk.css",
+    "static/js/main.42bc6b55.chunk.js"
+  ]
+}
