@@ -1,0 +1,99 @@
+.loginBack {
+    background-image: url("../../assets/images/back.png");
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+.loginMidBack {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.login {
+    padding: 53px 32px 37px;
+    width: 410px;
+    height: 338px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0, .15);
+}
+.login h1 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: #424242;
+}
+.login span {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+}
+.form {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.loginItem {
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.login input {
+    margin-top: 7px;
+    width: 345px;
+    height: 34px;
+    border-radius: 4px;
+    padding: 5px;
+}
+.inputForm {
+    border: 1px solid #C9CACC;
+}
+.head {
+    color: #424242;
+}
+.errorHead {
+    color: red;
+}
+.error {
+    margin-top: 3px;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 14px;
+    color: #EB1717;
+}
+.errorInput {
+    box-shadow: 0 0 4px rgba(235, 23, 23, 0.2);
+    border: 1px solid red;
+}
+.enter {
+    align-self: flex-end;
+    background: linear-gradient(104.34deg, #3C4CAD -15.34%, #00C3FF 145.95%);
+    width: 116px;
+    height: 34px;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: white;
+}
+.enter:hover {
+    cursor: pointer;
+    box-shadow: 0 0 4px #99A0A3;
+}
+.enter:active {
+    border: 1.5px solid rgba(29, 138, 216, 0.3);
+    background: linear-gradient(104.34deg, #5362BE -15.34%, #4AD5FF 145.95%);
+}
