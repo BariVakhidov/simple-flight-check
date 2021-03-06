@@ -42,7 +42,7 @@ const Departures = (props) => {
                         <span className={s.titleSpan}>SVO - JFK</span>
                     </div>
                     <div className={s.date}>
-                        <span
+                        <span style={{color:props.loading && "#a5a5a5"}}
                               onClick={props.loading ? undefined : () => setVisibleCalendar(true)}>{new Date(Date.parse(props.date)).toDateString()}</span>
                         <img src={calendar} alt="" width={18}/>
                     </div>
@@ -69,7 +69,7 @@ const Departures = (props) => {
                     {(props.isLoading || !props.quotes || !props.dictionaries) ? <Preloader/> :
                     (props.quotes.map(q =>
                         <Flight favorites={props.favorites} dictionaries={props.dictionaries} removeFromFavorites={props.removeFromFavorites} addToFavorites={props.addToFavorites} key={q.id} quote={q}
-                                places={props.places}  symbol={props.symbol} carrierCode={q.itineraries[0].segments[0].operating.carrierCode}/>))}
+                                places={props.places}  symbol={props.symbol}/>))}
                 </div>
             </div>
         </div>

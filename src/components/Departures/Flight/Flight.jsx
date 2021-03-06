@@ -6,8 +6,8 @@ import like from "../../../assets/images/Vector.svg";
 import like2 from "../../../assets/images/like2.png";
 import {dateConvertor, formatString} from "../../Common/functions";
 
-const Flight = ({places, symbol, quote, addToFavorites, removeFromFavorites, favorites, dictionaries, carrierCode}) => {
-
+const Flight = ({places, symbol, quote, addToFavorites, removeFromFavorites, favorites, dictionaries}) => {
+    let carrierCodes = quote.validatingAirlineCodes;
     let favorite = favorites.filter(f => (quote.itineraries[0].segments[0].departure.at === f.itineraries[0].segments[0].departure.at) &&
         (quote.id === f.id)).length;
 
@@ -25,7 +25,7 @@ const Flight = ({places, symbol, quote, addToFavorites, removeFromFavorites, fav
               <div className={s.info}>
                   <div>{places.from} <img src={arrow} alt="" height={8}/>{places.to}</div>
                   <span>{dateConvertor(quote.itineraries[0].segments[0].departure.at)}</span>
-                  <span>{formatString(dictionaries.carriers[carrierCode])}</span>
+                  <span>{carrierCodes.map(code => formatString(dictionaries.carriers[code]))}</span>
               </div>
           </div>
            <div className={s.price}>
