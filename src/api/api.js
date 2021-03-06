@@ -1,15 +1,38 @@
 import axios from "axios";
+import qs from 'qs';
+import {formatter} from "../components/Common/functions";
 const instance = axios.create({
-    baseURL: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/',
+    baseURL: 'https://test.api.amadeus.com/v2/',
+    crossDomain: true
+});
+
+
+let data = {
+    grant_type: "client_credentials",
+    client_id: 'usWwh1uvAI8afmUpGqDZIGEamoNSvX1n',
+    client_secret: 'pg1xmG1wJK0CewMu'}
+
+const instance2 = axios.create({
+    baseURL: 'https://test.api.amadeus.com/v1/security/oauth2/',
     headers: {
-        'x-rapidapi-key': 'f061b5aed2msh845f4a7c5c1c83dp151aebjsn88a52b7640ee',
-        'x-rapidapi-host': 'skyscanner-skyscanner-flight-search-v1.p.rapidapi.com'
+        'Content-Type': 'application/x-www-form-urlencoded'
     }
 });
-let dateInit = "2021-03-15";
+
+let curDate = new Date();
+let day = formatter(curDate.getDate());
+let month = formatter(curDate.getMonth() + 1);
+let year = curDate.getFullYear();
+let dateInit = /*"2021-03-15"*/ year + "-" + month + "-" + day;
 
 export const quotesAPI = {
-    getTickets (date = dateInit) {
-       return (instance.get(`browsequotes/v1.0/RU/RUB/ru-RU/JFK-sky/SVO-sky/${date}`).then(response => response.data))
+    getTickets (date = dateInit,token) {
+           return (instance.get(`shopping/flight-offers?originLocationCode=SVO&destinationLocationCode=JFK&departureDate=${date}&adults=1&nonStop=false&max=250&currencyCode=RUB`,
+               {headers: {
+                       Authorization: `Bearer ${token.access_token}`
+                   }} ).then(response => response.data))
+    },
+    getToken () {
+        return (instance2.post("token",qs.stringify(data)).then(response => response.data));
     }
 }

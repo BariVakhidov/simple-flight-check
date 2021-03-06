@@ -6,6 +6,7 @@ import image5 from "../assets/images/5.jpg"
 import image6 from "../assets/images/6.jpg"
 
 const SET_QUOTES = "simple-flight-check/departures/SET_QUOTES";
+const SET_DICTIONARIES = "simple-flight-check/departures/SET_DICTIONARIES";
 const SET_DATE= "simple-flight-check/departures/SET_DATE";
 const ADD_TO_FAVORITES= "simple-flight-check/departures/ADD_TO_FAVORITES";
 const REMOVE_FROM_FAVORITES= "simple-flight-check/departures/REMOVE_FROM_FAVORITES";
@@ -13,6 +14,7 @@ const SET_LOADING = "simple-flight-check/departures/SET_LOADING";
 export const REQUEST_QUOTES = "simple-flight-check/departures/REQUEST_QUOTES";
 
 export const setQuotes = (quotes) => ({type: SET_QUOTES, quotes});
+export const setDictionaries = (dictionaries) => ({type: SET_DICTIONARIES, dictionaries});
 export const addToFavorites = (quote) => ({type: ADD_TO_FAVORITES, quote});
 export const removeFromFavorites = (quote) => ({type: REMOVE_FROM_FAVORITES, quote});
 export const setLoading = () => ({type: SET_LOADING});
@@ -22,6 +24,7 @@ let initialState = {
     date: new Date(),
     favorites: [],
     quotes: [],
+    dictionaries: [],
     currency: {
         symbol: "₽"
     },
@@ -41,6 +44,11 @@ const departuresReducer = (state = initialState, action) => {
                 ...state,
                 quotes: action.quotes
             }
+        case SET_DICTIONARIES:
+            return {
+                ...state,
+                dictionaries: action.dictionaries
+            }
         case SET_LOADING:
             return {
                 ...state,
@@ -49,7 +57,7 @@ const departuresReducer = (state = initialState, action) => {
         case ADD_TO_FAVORITES:
             return {
                 ...state,
-                favorites: [...state.favorites, action.quote]
+                favorites: [...state.favorites.map(q => q), action.quote]
             }
         case REMOVE_FROM_FAVORITES:
             return {

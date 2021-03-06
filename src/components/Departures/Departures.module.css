@@ -48,13 +48,29 @@
     color: #424242;
     margin: 20px;
 }
+.quotes {
+    margin: 20px 0;
+    overflow: auto;
+    padding-right: 10px;
+}
+.quotes::-webkit-scrollbar {
+    width: 2px;
+}
+
+.quotes::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(156, 156, 156, 0.3);
+}
+
+.quotes::-webkit-scrollbar-thumb {
+    background: #1157A7;
+    border-radius: 2px;
+}
 .date{
     font-weight: 600;
     font-size: 25px;
     line-height: 22px;
     text-align: right;
     letter-spacing: -0.408px;
-
     color: #1157A7;
 }
 .date:hover {

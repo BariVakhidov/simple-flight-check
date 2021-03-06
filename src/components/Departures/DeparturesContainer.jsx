@@ -24,7 +24,8 @@ let mapStateToProps = (state) => {
         symbol: state.departures.currency.symbol,
         likes: state.departures.favorites.length,
         favorites: state.departures.favorites,
-
+        isLoading: state.departures.loading,
+        dictionaries: state.departures.dictionaries
     }
 }
 export default connect(mapStateToProps,{requestQuotes, setDate, addToFavorites, removeFromFavorites})(DeparturesContainer)
