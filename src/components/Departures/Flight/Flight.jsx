@@ -23,7 +23,7 @@ const Flight = ({places, symbol, quote, addToFavorites, removeFromFavorites, fav
           <div style={{display:"flex", alignItems:"center"}}>
               <div className={s.plane}><img src={plane} alt="plane" height={35}/></div>
               <div className={s.info}>
-                  <div>{places.from} <img src={arrow} alt="" height={8}/>{places.to}</div>
+                  <div className={s.places}>{places.from}<img src={arrow} alt="" height={10}/>{places.to}</div>
                   <span>{dateConvertor(quote.itineraries[0].segments[0].departure.at)}</span>
                   <span>{carrierCodes.map(code => formatString(dictionaries.carriers[code]))}</span>
               </div>

@@ -39,6 +39,14 @@
     letter-spacing: -0.408px;
     color: #424242;
 }
+.places {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.places img {
+    margin: 0 10px;
+}
 .price img {
     margin-bottom: 20px;
 }
