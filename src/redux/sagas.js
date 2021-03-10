@@ -1,5 +1,5 @@
 import {takeEvery, put, call} from "redux-saga/effects";
-import {REQUEST_QUOTES, setDictionaries, setLoading, setQuotes} from "./departures-reducer";
+import {REQUEST_QUOTES, setDictionaries, setLoading, setQuotes, setToken} from "./departures-reducer";
 import {quotesAPI} from "../api/api";
 
 export function* sagaWatcher() {
@@ -9,19 +9,29 @@ export function* sagaWatcher() {
 function* sagaWorker(action) {
     try {
         yield put(setLoading());
-        const token = yield call(()=> fetchToken());
-        const payload = yield call(() => fetchQuotes(action.date, token));
+        const payload = yield call(() => fetchQuotes(action.token, action.date));
         yield put(setQuotes(payload.data));
         yield put(setDictionaries(payload.dictionaries));
         yield put(setLoading());
     }
     catch (error) {
-        alert(error)
+        if (error.message === "Cannot read property 'access_token' of null") {
+            try {
+                const token = yield call(()=> fetchToken());
+                yield put(setToken(token));
+                const payload = yield call(() => fetchQuotes(token));
+                yield put(setQuotes(payload.data));
+                yield put(setDictionaries(payload.dictionaries));
+                yield put(setLoading());
+            }
+            catch (tokenError) {
+                alert(tokenError)
+            }
+        }
     }
 }
-
-const fetchQuotes = async (date, token) => {
-    return await quotesAPI.getTickets(date, token);
+const fetchQuotes = async (token,date) => {
+    return await quotesAPI.getTickets(token, date);
 }
 const fetchToken = async () => {
     return await quotesAPI.getToken();

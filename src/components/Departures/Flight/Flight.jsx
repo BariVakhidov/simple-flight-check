@@ -5,17 +5,21 @@ import arrow from "../../../assets/images/arrow.png";
 import like from "../../../assets/images/Vector.svg";
 import like2 from "../../../assets/images/like2.png";
 import {dateConvertor, formatString} from "../../Common/functions";
+import {useDispatch} from "react-redux";
+import {addToFavorites, removeFromFavorites} from "../../../redux/departures-reducer";
 
-const Flight = ({places, symbol, quote, addToFavorites, removeFromFavorites, favorites, dictionaries}) => {
+const Flight = ({places, symbol, quote, favorites, dictionaries}) => {
+
+    let dispatch = useDispatch();
     let carrierCodes = quote.validatingAirlineCodes;
     let favorite = favorites.filter(f => (quote.itineraries[0].segments[0].departure.at === f.itineraries[0].segments[0].departure.at) &&
         (quote.id === f.id)).length;
 
     const addToFavorite = () => {
         if (favorite > 0) {
-            removeFromFavorites(quote);
+            dispatch(removeFromFavorites(quote));
         } else {
-            addToFavorites(quote);
+            dispatch(addToFavorites(quote));
         }
     }
     return (
@@ -25,7 +29,13 @@ const Flight = ({places, symbol, quote, addToFavorites, removeFromFavorites, fav
               <div className={s.info}>
                   <div className={s.places}>{places.from}<img src={arrow} alt="" height={10}/>{places.to}</div>
                   <span>{dateConvertor(quote.itineraries[0].segments[0].departure.at)}</span>
-                  <span>{carrierCodes.map(code => formatString(dictionaries.carriers[code]))}</span>
+                  <span>{carrierCodes.map(code => {
+                      if (code === "AF") {
+                          return formatString("AIR FRANCE")
+                      }
+                      else
+                         return formatString(dictionaries.carriers[code])
+                      })}</span>
               </div>
           </div>
            <div className={s.price}>

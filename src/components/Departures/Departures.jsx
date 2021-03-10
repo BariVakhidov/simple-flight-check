@@ -12,8 +12,13 @@ import calendar from "../../assets/images/calendar.png"
 import Carousel from "./Carousel";
 import Preloader from "../Common/Preloader";
 import {departuresCount, formatter} from "../Common/functions";
+import {useDispatch, useSelector} from "react-redux";
+import {requestQuotes} from "../../redux/departures-reducer";
 
 const Departures = (props) => {
+    const dispatch = useDispatch();
+    let quotes = useSelector(state => state.departures.quotes);
+
     const [value, onChange] = useState(new Date());
     const [visibleCalendar, setVisibleCalendar] = useState(false);
 
@@ -23,13 +28,13 @@ const Departures = (props) => {
         let month = formatter(date.getMonth() + 1);
         let year = date.getFullYear();
         props.setDate(value);
-        props.requestQuotes(year + "-" + month + "-" + day);
+        dispatch(requestQuotes(props.token, year + "-" + month + "-" + day));
     }
 
     return (
         <div className={s.departures}>
             <div className={s.departuresHeader}>
-                <div className={s.exit} onClick={()=> props.setToken({"token":""})}>
+                <div className={s.exit} onClick={() => props.setToken({"token": ""})}>
                     <span>Выйти</span>
                     <img src={logout} alt="logout" height={18}/>
                 </div>
@@ -42,7 +47,7 @@ const Departures = (props) => {
                         <span className={s.titleSpan}>SVO - JFK</span>
                     </div>
                     <div className={s.date}>
-                        <span style={{color:props.loading && "#a5a5a5"}}
+                        <span style={{color: props.loading && "#a5a5a5"}}
                               onClick={props.loading ? undefined : () => setVisibleCalendar(true)}>{new Date(Date.parse(props.date)).toDateString()}</span>
                         <img src={calendar} alt="" width={18}/>
                     </div>
@@ -62,14 +67,17 @@ const Departures = (props) => {
                 <Carousel photos={props.photos}/>
                 <div className={s.likes}>
                     <span>Добавлено в Избранное:</span>
-                    <span style={{color:"#1157A7", fontWeight:"bold", margin:"0 10px"}}>{props.likes}</span>
+                    <span style={{color: "#1157A7", fontWeight: "bold", margin: "0 10px"}}>{props.likes}</span>
                     <span>{departuresCount(props.likes)}</span>
                 </div>
                 <div className={s.quotes}>
-                    {(props.isLoading || !props.quotes || !props.dictionaries) ? <Preloader/> :
-                    (props.quotes.map(q =>
-                        <Flight favorites={props.favorites} dictionaries={props.dictionaries} removeFromFavorites={props.removeFromFavorites} addToFavorites={props.addToFavorites} key={q.id} quote={q}
-                                places={props.places}  symbol={props.symbol}/>))}
+                    {((props.isLoading) && <Preloader/>) ||
+                    ((!props.isLoading && !quotes && !props.dictionaries) &&
+                        <div>Рейсов на выбранную дату нет</div>) ||
+                    (quotes.map(q =>
+                        <Flight favorites={props.favorites} dictionaries={props.dictionaries}
+                                key={q.id} quote={q}
+                                places={props.places} symbol={props.symbol}/>))}
                 </div>
             </div>
         </div>

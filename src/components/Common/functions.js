@@ -5,12 +5,9 @@ export const formatter = (num) => {
     return num;
 };
 export const formatString = (string) => {
-    let newStr = string.split(" ");
-    for (let i = 0; i < newStr.length; i++) {
-      newStr[i] = newStr[i].charAt(0) + newStr[i].toLowerCase().slice(1);
-    }
-    return newStr.join(" ");
+    return string.split(" ").map(str => str.charAt(0) + str.toLowerCase().slice(1) + " ");
 };
+
 export const departuresCount = (number) => {
     let str = number.toString();
     let lastNumber = str.charAt(str.length-1);

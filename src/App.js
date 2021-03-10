@@ -1,10 +1,11 @@
 import './App.css';
-import React  from 'react';
+import React from 'react';
 import Login from "./components/Login/Login";
 import DeparturesContainer from "./components/Departures/DeparturesContainer";
 import useToken from "./components/Login/useToken";
 
-const App = () => {
+
+const App = ({requestToken}) => {
     const { token, setToken } = useToken();
 
     if(!token) {

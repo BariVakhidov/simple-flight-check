@@ -6,6 +6,8 @@ import image5 from "../assets/images/5.jpg"
 import image6 from "../assets/images/6.jpg"
 
 const SET_QUOTES = "simple-flight-check/departures/SET_QUOTES";
+const SET_TOKEN = "simple-flight-check/departures/SET_TOKEN";
+export const REQUEST_TOKEN = "simple-flight-check/departures/REQUEST_TOKEN";
 const SET_DICTIONARIES = "simple-flight-check/departures/SET_DICTIONARIES";
 const SET_DATE= "simple-flight-check/departures/SET_DATE";
 const ADD_TO_FAVORITES= "simple-flight-check/departures/ADD_TO_FAVORITES";
@@ -14,6 +16,7 @@ const SET_LOADING = "simple-flight-check/departures/SET_LOADING";
 export const REQUEST_QUOTES = "simple-flight-check/departures/REQUEST_QUOTES";
 
 export const setQuotes = (quotes) => ({type: SET_QUOTES, quotes});
+export const setToken = (token) => ({type: SET_TOKEN, token});
 export const setDictionaries = (dictionaries) => ({type: SET_DICTIONARIES, dictionaries});
 export const addToFavorites = (quote) => ({type: ADD_TO_FAVORITES, quote});
 export const removeFromFavorites = (quote) => ({type: REMOVE_FROM_FAVORITES, quote});
@@ -22,6 +25,7 @@ export const setDate = (date) => ({type: SET_DATE, date});
 
 let initialState = {
     date: new Date(),
+    token: null,
     favorites: [],
     quotes: [],
     dictionaries: [],
@@ -43,6 +47,11 @@ const departuresReducer = (state = initialState, action) => {
             return {
                 ...state,
                 quotes: action.quotes
+            }
+        case SET_TOKEN:
+            return {
+                ...state,
+                token: action.token
             }
         case SET_DICTIONARIES:
             return {
@@ -75,6 +84,9 @@ const departuresReducer = (state = initialState, action) => {
 }
 export default departuresReducer;
 
-export const requestQuotes = (date) => {
-    return {type: REQUEST_QUOTES, date}
+export const requestQuotes = (token, date) => {
+    return {type: REQUEST_QUOTES, token, date}
+};
+export const requestToken = () => {
+    return {type: REQUEST_TOKEN}
 }
